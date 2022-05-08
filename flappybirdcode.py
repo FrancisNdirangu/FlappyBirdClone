@@ -6,8 +6,8 @@ from random import choice
 
 class Game:
     def __init__(self):
-        #player setup
         pass
+        #player setup
 
         #obstacle setup
 
@@ -18,8 +18,6 @@ class Game:
 
     #def creating obstacles
 
-    #def update if this is needed here
-
     #def run
 
 def obstacle_creater(self):
@@ -29,6 +27,15 @@ def create_multiple_obstacles(self):
     pass
 
 def collision_checker(self):
+    pass
+
+def display_level(self):
+    pass
+
+def display_score(self):
+    pass
+
+def victory_message(self):
     pass
 
 def run(self):
