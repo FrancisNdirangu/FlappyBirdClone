@@ -6,19 +6,18 @@ from random import choice
 
 class Game:
     def __init__(self):
-        pass
         #player setup
+        player_sprite = Player(5,5,10)
+        self.player = pygame.sprite.GroupSingle(player_sprite)
+        
+        #score setup
+        self.score = 0
+
 
         #obstacle setup
 
 
-        #audio setup
 
-    #def collision checker
-
-    #def creating obstacles
-
-    #def run
 
 def obstacle_creater(self):
     pass
@@ -45,8 +44,6 @@ def run(self):
 class Background(pygame.sprite.Sprite):
     def __init__(self,image_file,location):
         super().__init__()
-        image_file = choice(['C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/background-day.png'
-        ,'C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/background-night.png'])
         self.image = pygame.image.load(image_file)
         self.rect = self.image.get_rect()
         self.rect.x,self.rect.y = location
@@ -65,7 +62,7 @@ if __name__ == '__flappybirdcode__':
     image_file = choice(['C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/background-day.png'
         ,'C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/background-night.png'])
     
-    #game = Game()
+    game = Game()
     running = True
     clock = pygame.time.Clock()
 
@@ -83,8 +80,9 @@ if __name__ == '__flappybirdcode__':
             if event.type == pygame.QUIT:
                 running = False
 
-        screen.fill((0,0,0))
-        #game.run() when you make the run function in the game class
+        screen.fill([0,0,0])
+        screen.blit(Background.image,Background.rect)
+        #game.run() #when you make the run function in the game class
         Background(image_file,[0,0])
 
 
