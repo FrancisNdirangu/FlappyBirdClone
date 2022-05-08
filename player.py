@@ -48,11 +48,15 @@ class Player(pygame.sprite.Sprite):
             if current_time - self.jump_time >= self.jump_cooldown:
                 self.ready = True
 
+    def player_jump_path(self): #we need to use reverse kinematics to smoothen the path that the player sprite undergoes
+        pass
+
 
     def update(self):
         self.get_keyboard_input()
         self.player_gravity()
         self.jump_delay()
+        #self.image =  #this is for updating the self.image when we do jump
 
 
 
