@@ -7,7 +7,7 @@ from random import choice
 class Game:
     def __init__(self):
         #player setup
-
+        pass
 
         #obstacle setup
 
@@ -21,6 +21,19 @@ class Game:
     #def update if this is needed here
 
     #def run
+
+def obstacle_creater(self):
+    pass
+
+def create_multiple_obstacles(self):
+    pass
+
+def collision_checker(self):
+    pass
+
+def run(self):
+    pass
+
 
 class Background(pygame.sprite.Sprite):
     def __init__(self,image_file,location):
