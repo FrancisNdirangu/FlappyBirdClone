@@ -32,6 +32,7 @@ class Player(pygame.sprite.Sprite):
             #also replace the image with that of the upflap as long as the y is moving up
             if self.rect.y > 0:
                 self.image = pygame.image.load('C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/redbird-upflap.png') #this is not changing the image
+                #another issue is that we are only using the red bird upflap and we have to find a way to use both for the upflap, we can do that by finding the index we used in the choice
                 sound_up = pygame.mixer.Sound('C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/audio/wing.wav')
                 sound_up.set_volume(0.2)
                 sound_up.play()
