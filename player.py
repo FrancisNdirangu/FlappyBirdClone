@@ -7,16 +7,29 @@ import pygame
 #player should have a sound that plays during each click
 #there should be a score that increases as time passes when the player is alive
 class Player(pygame.sprite.Sprite):
-    def __init__(self,speed_x,speed_y):
+    def __init__(self,speed_x,speed_y,gravity):
         super().__init__()
         self.image = pygame.image.load('C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/redbird-midflap.png')
         self.rect = self.image.get_rect(topleft = (60,300)) #should be somewhere in the middle of the screen
         self.speed_x = speed_x
         self.speed_y = speed_y
+        self.gravity = gravity
 
     def get_keyboard_input(self):
-        keys = pygame.key.get_pressed()
-        
+        key = pygame.key.get_pressed()
+
+        if key[pygame.K_SPACE]:
+            self.rect.x += self.speed_x
+            self.rect.y -= self.speed_y
+            #also replace the image with that of the upflap as long as the y is moving up
+            if self.rect.y > 0:
+                self.image = pygame.image.load('C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/redbird-upflap.png')
+
+    def player_gravity(self):
+        self.rect.y += self.gravity
+        if self.rect.y < 0:
+            self.image = pygame.image.load('C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/redbird-downflap.png')
+
 
         
 

@@ -1,5 +1,6 @@
 #hello this is the file
 import pygame
+from player import Player
 
 
 class Game:
