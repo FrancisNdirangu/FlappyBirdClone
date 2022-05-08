@@ -1,4 +1,5 @@
 import pygame
+from random import choice
 #properties of the player:
 #player should move diagonally forward by clicking. both x and y movement at a constant speed
 #player image should change based on the click. player should start on the midflap and then the upflap then the bottomflap then the upflap and so on.
@@ -9,7 +10,9 @@ import pygame
 class Player(pygame.sprite.Sprite):
     def __init__(self,speed_x,speed_y,gravity):
         super().__init__()
-        self.image = pygame.image.load('C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/redbird-midflap.png')
+        player_image = choice(['C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/redbird-midflap.png',
+        'C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/yellowbird-midflap.png'])
+        self.image = pygame.image.load(player_image)
         self.rect = self.image.get_rect(topleft = (60,300)) #should be somewhere in the middle of the screen
         self.speed_x = speed_x
         self.speed_y = speed_y
