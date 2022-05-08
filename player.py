@@ -17,16 +17,21 @@ class Player(pygame.sprite.Sprite):
         self.speed_x = speed_x
         self.speed_y = speed_y
         self.gravity = gravity
+        self.ready = True
+        self.jump_time = 0
+        self.jump_cooldown = 200
 
     def get_keyboard_input(self):
         key = pygame.key.get_pressed()
 
-        if key[pygame.K_SPACE]:
+        if key[pygame.K_SPACE] and self.ready:
             self.rect.x += self.speed_x
             self.rect.y -= self.speed_y
+            self.ready = False
+            self.jump_time = pygame.time.get_ticks()
             #also replace the image with that of the upflap as long as the y is moving up
             if self.rect.y > 0:
-                self.image = pygame.image.load('C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/redbird-upflap.png')
+                self.image = pygame.image.load('C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/redbird-upflap.png') #this is not changing the image
                 sound_up = pygame.mixer.Sound('C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/audio/wing.wav')
                 sound_up.set_volume(0.2)
                 sound_up.play()
@@ -36,10 +41,17 @@ class Player(pygame.sprite.Sprite):
         if self.rect.y < 0:
             self.image = pygame.image.load('C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/redbird-downflap.png')
 
+    def jump_delay(self):
+        if not self.ready:
+            current_time = pygame.time.get_ticks()
+            if current_time - self.jump_time >= self.jump_cooldown:
+                self.ready = True
+
 
     def update(self):
         self.get_keyboard_input()
         self.player_gravity()
+        self.jump_delay()
 
 
 
