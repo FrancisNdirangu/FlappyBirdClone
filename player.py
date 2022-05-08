@@ -49,6 +49,7 @@ class Player(pygame.sprite.Sprite):
                 self.ready = True
 
     def player_jump_path(self): #we need to use reverse kinematics to smoothen the path that the player sprite undergoes
+        #this is to make the movement of the player sprite smooth
         pass
 
 
