@@ -29,7 +29,7 @@ class Player(pygame.sprite.Sprite):
                 self.image = pygame.image.load('C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/redbird-upflap.png')
                 sound_up = pygame.mixer.Sound('C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/audio/wing.wav')
                 sound_up.set_volume(0.2)
-                sound_up.play(0.2)
+                sound_up.play()
 
     def player_gravity(self):
         self.rect.y += self.gravity
