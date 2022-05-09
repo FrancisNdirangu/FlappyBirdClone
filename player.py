@@ -30,7 +30,8 @@ class Player(pygame.sprite.Sprite):
         ,pygame.image.load(red_bird_downflap)]
         self.i = 0
         
-
+        self.current_image = self.red_bird_motions[self.i]
+        self.rect = self.current_image.get_rect(topleft = (60,300))
     def animating_player(self):
         pass
         
@@ -78,13 +79,11 @@ class Player(pygame.sprite.Sprite):
         self.animating_player()
         #self.image =  #this is for updating the self.image when we do jump
 
-        self.current_image = self.red_bird_motions[self.i]
-        self.rect = self.current_image.get_rect(topleft = (60,300))
-        for a in range(len(self.red_bird_motions)):
-            self.i += 0.2
-            self.current_image = self.red_bird_motions[int(self.i)]
-            if self.i >= len(self.red_bird_motions):
-                self.i = 0
+
+        self.i += 0.2
+        self.current_image = self.red_bird_motions[int(self.i)]
+        if self.i >= len(self.red_bird_motions):
+            self.i = 0
 
         
 
