@@ -7,7 +7,7 @@ from random import choice
 class Game:
     def __init__(self):
         #player setup
-        player_sprite = Player(45,60,5)
+        player_sprite = Player(10,30,3)
         self.player = pygame.sprite.GroupSingle(player_sprite)
         
         #score setup

@@ -10,16 +10,31 @@ from random import choice
 class Player(pygame.sprite.Sprite):
     def __init__(self,speed_x,speed_y,gravity):
         super().__init__()
-        player_image = choice(['C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/redbird-midflap.png',
-        'C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/yellowbird-midflap.png'])
-        self.image = pygame.image.load(player_image)
-        self.rect = self.image.get_rect(topleft = (60,300)) #should be somewhere in the middle of the screen
+        #player_image = #choice(['C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/redbird-midflap.png',
+        #'C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/yellowbird-midflap.png'])
+        red_bird_midflap = 'C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/redbird-midflap.png'
+        red_bird_upflap = 'C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/redbird-upflap.png'
+        red_bird_downflap = 'C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/redbird-downflap.png'
+        
+        #self.image = pygame.image.load(player_image)
+        
+        #self.rect = self.image.get_rect(topleft = (60,300)) #should be somewhere in the middle of the screen
         self.speed_x = speed_x
         self.speed_y = speed_y
         self.gravity = gravity
         self.ready = True
         self.jump_time = 0
         self.jump_cooldown = 200
+        
+        self.red_bird_motions = [pygame.image.load(red_bird_midflap),pygame.image.load(red_bird_upflap),pygame.image.load(red_bird_midflap)
+        ,pygame.image.load(red_bird_downflap)]
+        self.i = 0
+        
+
+    def animating_player(self):
+        pass
+        
+        
 
     def get_keyboard_input(self):
         key = pygame.key.get_pressed()
@@ -31,16 +46,16 @@ class Player(pygame.sprite.Sprite):
             self.jump_time = pygame.time.get_ticks()
             #also replace the image with that of the upflap as long as the y is moving up
             if self.rect.y > 0:
-                self.image = pygame.image.load('C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/redbird-upflap.png') #this is not changing the image
+                #self.image = pygame.image.load('C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/redbird-upflap.png') #this is not changing the image
                 #another issue is that we are only using the red bird upflap and we have to find a way to use both for the upflap, we can do that by finding the index we used in the choice
                 sound_up = pygame.mixer.Sound('C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/audio/wing.wav')
                 sound_up.set_volume(0.2)
                 sound_up.play()
 
-    def player_gravity(self):
-        self.rect.y += self.gravity
-        if self.rect.y < 0:
-            self.image = pygame.image.load('C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/redbird-downflap.png')
+    #def player_gravity(self):
+        #self.rect.y += self.gravity
+        #if self.rect.y < 0:
+            #self.image = pygame.image.load('C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/redbird-downflap.png')
 
     def jump_delay(self):
         if not self.ready:
@@ -50,6 +65,8 @@ class Player(pygame.sprite.Sprite):
 
     def player_jump_path(self): #we need to use reverse kinematics to smoothen the path that the player sprite undergoes
         #this is to make the movement of the player sprite smooth
+        #this path can be traced by finding the displacement in both the x and y at different points in time and then adding these displacements to the sprites location
+        #these displacements should be in a list and we should cycle through these displacements and then iterate on this process for the next jump and so on
         pass
 
 
@@ -57,9 +74,17 @@ class Player(pygame.sprite.Sprite):
         self.get_keyboard_input()
         self.player_gravity()
         self.jump_delay()
+
+        self.animating_player()
         #self.image =  #this is for updating the self.image when we do jump
 
-
+        self.current_image = self.red_bird_motions[self.i]
+        self.rect = self.current_image.get_rect(topleft = (60,300))
+        for a in range(len(self.red_bird_motions)):
+            self.i += 0.2
+            self.current_image = self.red_bird_motions[int(self.i)]
+            if self.i >= len(self.red_bird_motions):
+                self.i = 0
 
         
 
