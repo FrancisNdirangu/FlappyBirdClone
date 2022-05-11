@@ -16,6 +16,7 @@ class Game:
 
         #obstacle setup
 
+#in order to get consistent smooth movement use delta time. which Clear Code has a video on
 
     def obstacle_creater(self):
         pass

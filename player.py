@@ -60,7 +60,7 @@ class Player(pygame.sprite.Sprite):
         #self.image =  #this is for updating the self.image when we do jump
 
 
-
+#in order to make the movement of the player smooth I need to use delta time. Check out the Clear Code video about this
         
 
     
