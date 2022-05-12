@@ -2,6 +2,7 @@
 import pygame
 from player import Player
 from random import choice
+from sprites import Background
 
 
 class Game:
@@ -10,12 +11,18 @@ class Game:
         player_sprite = Player(45,60,5)
         self.player = pygame.sprite.GroupSingle(player_sprite)
         
+        #sprites setup
+        Background(self.all_sprites)
+
         #score setup
         self.score = 0
 
 
         #obstacle setup
+        self.collision_sprites = pygame.sprite.group()
 
+        #all_sprites group 
+        self.all_sprites = pygame.sprite.group()
 #in order to get consistent smooth movement use delta time. which Clear Code has a video on
 
     def obstacle_creater(self):
@@ -41,16 +48,6 @@ class Game:
         self.player.draw(screen)
 
 
-class Background(pygame.sprite.Sprite):
-    def __init__(self,image_file,location,screen_width,screen_height):
-        #super().__init__()
-        pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load(image_file)
-        self.image = pygame.transform.scale(self.image,(screen_width,screen_height))
-        self.rect = self.image.get_rect()
-        self.rect.x,self.rect.y = location
-        
-
 
 
 
@@ -64,10 +61,7 @@ if __name__ == '__main__':
     screen_height = 600
     screen = pygame.display.set_mode((screen_width,screen_height))
     pygame.display.set_caption('FlappyBirdClone')
-    image_file = choice(['C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/background-day.png'
-        ,'C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/background-night.png'])
-    
-    background = Background(image_file,[0,0],screen_width,screen_height)    
+  
     
     running = True
     clock = pygame.time.Clock()
@@ -82,7 +76,8 @@ if __name__ == '__main__':
 
         screen.fill([0,0,0])
 
-        screen.blit(background.image,background.rect)
+
+        
         game.run() #when you make the run function in the game class
 
 
