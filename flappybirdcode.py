@@ -22,8 +22,15 @@ class Game:
         self.all_sprites = pygame.sprite.Group()
 #in order to get consistent smooth movement use delta time. which Clear Code has a video on
         
+
+        #scale factor
+        background_height = pygame.image.load('C:/Users/franc/Downloads/FlappyBirdClone/flappy-bird-assets-master/sprites/background-day.png').get_height()
+        self.scale_factor = WINDOW_HEIGHT/ background_height
+        
+
         #sprites setup
-        Background(self.all_sprites)
+        Background(self.all_sprites,self.scale_factor)
+
     def run(self):
 
 
@@ -40,6 +47,7 @@ class Game:
                     sys.exit()
 
             #game logic
+            self.all_sprites.draw(self.display_surface)
             pygame.display.update()
             self.clock.tick(FRAMERATE)
 
