@@ -15,14 +15,15 @@ class Game:
         player_sprite = Player(45,60,5)
         self.player = pygame.sprite.GroupSingle(player_sprite)
         
-        #sprites setup
-        Background(self.all_sprites)
+
 
         #sprite groups
-        self.collision_sprites = pygame.sprite.group() 
-        self.all_sprites = pygame.sprite.group()
+        self.collision_sprites = pygame.sprite.Group() 
+        self.all_sprites = pygame.sprite.Group()
 #in order to get consistent smooth movement use delta time. which Clear Code has a video on
-
+        
+        #sprites setup
+        Background(self.all_sprites)
     def run(self):
 
 
