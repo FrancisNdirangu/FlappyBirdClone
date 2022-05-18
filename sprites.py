@@ -14,3 +14,8 @@ class Background(pygame.sprite.Sprite):
 
         self.image = pygame.transform.scale(background_image,(int(FULL_WIDTH),int(FULL_HEIGHT)))
         self.rect = self.image.get_rect(topleft = (0,0))
+        self.pos = pygame.math.Vector2(self.rect.topleft)
+
+    def update(self,dt):
+        self.pos.x -= 300*dt
+        self.rect.x = round(self.pos.x)

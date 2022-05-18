@@ -47,6 +47,7 @@ class Game:
                     sys.exit()
 
             #game logic
+            self.all_sprites.update(dt)
             self.all_sprites.draw(self.display_surface)
             pygame.display.update()
             self.clock.tick(FRAMERATE)
